@@ -5,18 +5,14 @@ namespace SimpleSaw {
 
 class RnboSaw : public SCUnit {
 public:
-    RNBO::CoreObject *rnboObj;
     RnboSaw();
-
-    // Destructor
     ~RnboSaw();
 
 private:
-    // Calc function
     void next(int nSamples);
 
-    // Member variables
     RNBO::SampleValue **buf;
+    RNBO::CoreObject rnboObj;
 };
 
 } // namespace SimpleSaw
