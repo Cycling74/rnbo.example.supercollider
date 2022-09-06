@@ -1,0 +1,26 @@
+class:: RnboSaw
+summary:: A basic saw ugen from rnbo
+related:: TODO
+categories:: UGens>TODO
+
+description::
+
+A basic saw ugen from rnbo
+
+
+classmethods::
+
+method::ar, kr
+
+argument::TODO
+
+argument::TODO
+
+
+examples::
+
+code::
+
+{ RnboSaw.ar(/* TODO */) }.play
+
+::

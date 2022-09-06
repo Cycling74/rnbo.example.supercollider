@@ -1,0 +1,3 @@
+[submodule "third-party/supercollider"]
+	path = third-party/supercollider
+	url = https://github.com/supercollider/supercollider.git
