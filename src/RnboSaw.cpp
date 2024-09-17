@@ -30,13 +30,14 @@ RnboSaw::~RnboSaw() {
 void RnboSaw::next(int nSamples) {
     // const float* input = in(0);
     float* outbuf = out(0);
+    RNBO::SampleValue ** input = nullptr;
 
     // TODO: How does SC get the sample rate and buffer size?
     rnboObj.prepareToProcess(44100, 512);
-    rnboObj.process(nullptr, 0, buf, 1, 512);
+    rnboObj.process(input, 0, buf, 1, 512);
 
     for (int i = 0; i < nSamples; ++i) {
-        outbuf[i] = buf[0][i];
+        outbuf[i] = static_cast<float>(buf[0][i]); //TODO better conversion?
     }
 }
 
