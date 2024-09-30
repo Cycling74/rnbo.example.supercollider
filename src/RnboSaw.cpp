@@ -17,6 +17,15 @@ RnboSaw::RnboSaw() {
         Print("RnboSaw ERROR: mem alloc failed");
     }
 
+
+    auto index = rnboObj.getParameterIndexForID("freq");
+    if (index < rnboObj.getNumParameters()) {
+      float freq = in0(0);
+      rnboObj.setParameterValue(index, freq);
+    } else {
+        Print("RnboSaw ERROR: cannot find freq parameter");
+    }
+
     Print("New RnboSaw!\n");
     next(1);
 }
@@ -33,8 +42,9 @@ void RnboSaw::next(int nSamples) {
     RNBO::SampleValue ** input = nullptr;
 
     // TODO: How does SC get the sample rate and buffer size?
-    rnboObj.prepareToProcess(44100, 512);
-    rnboObj.process(input, 0, buf, 1, 512);
+    auto bufsize = bufferSize();
+    rnboObj.prepareToProcess(sampleRate(), bufsize);
+    rnboObj.process(input, 0, buf, 1, bufsize);
 
     for (int i = 0; i < nSamples; ++i) {
         outbuf[i] = static_cast<float>(buf[0][i]); //TODO better conversion?
